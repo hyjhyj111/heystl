@@ -49,8 +49,8 @@ cmake_ninja_workdir = /Users/heyujie/heystl/cmake-build-debug/
 
 build cmake_object_order_depends_target_heystl: phony || .
 
-build CMakeFiles/heystl.dir/main.cpp.o: CXX_COMPILER__heystl_unscanned_Debug /Users/heyujie/heystl/main.cpp || cmake_object_order_depends_target_heystl
-  DEP_FILE = CMakeFiles/heystl.dir/main.cpp.o.d
+build CMakeFiles/heystl.dir/unique_ptr.cpp.o: CXX_COMPILER__heystl_unscanned_Debug /Users/heyujie/heystl/unique_ptr.cpp || cmake_object_order_depends_target_heystl
+  DEP_FILE = CMakeFiles/heystl.dir/unique_ptr.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -mmacosx-version-min=14.6 -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/heystl.dir
   OBJECT_FILE_DIR = CMakeFiles/heystl.dir
@@ -63,7 +63,7 @@ build CMakeFiles/heystl.dir/main.cpp.o: CXX_COMPILER__heystl_unscanned_Debug /Us
 #############################################
 # Link the executable heystl
 
-build heystl: CXX_EXECUTABLE_LINKER__heystl_Debug CMakeFiles/heystl.dir/main.cpp.o
+build heystl: CXX_EXECUTABLE_LINKER__heystl_Debug CMakeFiles/heystl.dir/unique_ptr.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -mmacosx-version-min=14.6
   OBJECT_DIR = CMakeFiles/heystl.dir
   POST_BUILD = :

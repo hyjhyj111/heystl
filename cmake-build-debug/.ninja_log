@@ -1,0 +1,4 @@
+# ninja log v6
+1	40	1732105308051479178	CMakeFiles/heystl.dir/unique_ptr.cpp.o	ad8fc51887a0458b
+1	361	1732105369377589446	CMakeFiles/heystl.dir/unique_ptr.cpp.o	ad8fc51887a0458b
+362	387	1732105369739092664	heystl	890701cdfda12c80
