@@ -3,7 +3,9 @@ project(heystl)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(heystl
-        unique_ptr.hpp
-        define.hpp
-        unique_ptr.cpp)
+
+add_executable(unique_ptr
+        src/define.hpp
+        src/unique_Ptr.cpp
+        src/unique_Ptr.hpp
+)

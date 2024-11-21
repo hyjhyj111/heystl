@@ -1,4 +1,8 @@
 # ninja log v6
-1	40	1732105308051479178	CMakeFiles/heystl.dir/unique_ptr.cpp.o	ad8fc51887a0458b
+1	595	1732190261116893160	CMakeFiles/heystl.dir/src/main.cpp.o	a51555ffb95833d0
+596	1915	1732190261711928732	heystl	596c3949df8dae3f
+2	58	1732191501519565019	build.ninja	1bc9286f6db45bbc
 1	361	1732105369377589446	CMakeFiles/heystl.dir/unique_ptr.cpp.o	ad8fc51887a0458b
-362	387	1732105369739092664	heystl	890701cdfda12c80
+1	33	1732191504635091684	CMakeFiles/unique_ptr.dir/src/unique_Ptr.cpp.o	108bd71feb002759
+1	35	1732191522546889180	CMakeFiles/unique_ptr.dir/src/unique_Ptr.cpp.o	108bd71feb002759
+36	70	1732191522581759240	unique_ptr	8b7ae3d3551d1ad
