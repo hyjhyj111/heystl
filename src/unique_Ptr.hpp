@@ -2,22 +2,41 @@
 #include "define.hpp"
 
 NAMESPACE_OPEN
-template<typename _Tp>
+template<typename T>
 struct Default_deleter{
-    void operator()(_Tp *p) {
+    void operator()(T *p) {
         delete p;
     }
 };
-template<typename _Tp, typename Deleter = Default_deleter<_Tp>>
+template<typename T>
+struct Default_deleter<T[]>{
+    void operator()(T *p) {
+        delete[] p;
+    }
+};
+template<typename T, typename Deleter = Default_deleter<T>>
 class unique_ptr{
 private:
-    _Tp *p;
-    using deleter = Deleter;
+    T* p;
+    [[no_unique_address]] Deleter deleter = Deleter();
+    template<typename U, typename UDeleter>
+    friend struct unique_ptr;
 public:
-    explicit unique_ptr(_Tp *ptr) : p(ptr) {}
+    explicit unique_ptr(T *ptr) : p(ptr) {}
+    unique_ptr(unique_ptr&& that)  noexcept : p{that.p}{
+        that.p = nullptr;
+    }
+    unique_ptr& operator=(unique_ptr &&that)  noexcept {
+        if (p) deleter(p);
+        deleter = that.deleter;
+        p = that.p;
+        return *this;
+    }
+    unique_ptr(const unique_ptr& ) = delete;
+    unique_ptr &operator=(const unique_ptr &) = delete;
     ~unique_ptr() {
-        if (p)
-            deleter(p);
+            deleter (p);
+
     }
 };
 
