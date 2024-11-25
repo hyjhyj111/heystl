@@ -1,7 +1,5 @@
 #include <cstdio>
 #include <vector>
-#include <iostream>
-#include <vector>
 #include "unique_ptr.hpp"
 using namespace hey;
 struct MyClass {
@@ -34,12 +32,16 @@ struct Cat : Animal {
         printf("Meow! I'm %d Year Old!\n", age);
     }
 };
-
+class t{
+public:
+    void operator() (Cat *p) { delete p;}
+};
 int main() {
     std::vector<unique_ptr<Animal>> zoo;
     int age = 3;
     zoo.push_back(make_unique<Cat>(age));
     zoo.push_back(make_unique<Dog>(age));
+    zoo.push_back(make_unique<Cat>(age));
     for (auto const &a: zoo) {
         a->speak();
     }
@@ -47,6 +49,9 @@ int main() {
     for (auto const &a: zoo) {
         a->speak();
     }
-
+    auto x = make_unique<int[]>(10);
+    std::printf("%d \n", x[2]);
+    unique_ptr<Cat, t> qqq;
+    t{}(new Cat(age));
     return 0;
 }

@@ -19,26 +19,24 @@ template<typename T, typename Deleter = Default_deleter<T>>
 class unique_ptr{
 private:
     T* p;
-    [[no_unique_address]] Deleter deleter = Deleter();
+    [[no_unique_address]] Deleter deleter;
     template<typename U, typename UDeleter>
     friend struct unique_ptr;
 public:
     explicit unique_ptr(T *ptr) noexcept : p(ptr) {}
 
-    explicit unique_ptr(nullptr_t _) noexcept : p(nullptr) {}
+    unique_ptr(nullptr_t _ = nullptr) noexcept : p(nullptr) {}
 
     unique_ptr(const unique_ptr& ) = delete;
     unique_ptr &operator=(const unique_ptr &) = delete;
 
     unique_ptr(unique_ptr&& that)  noexcept {
         p = std::exchange(that.p, nullptr);
-        deleter = std::move(that.deleter);
     }
 
     unique_ptr& operator=(unique_ptr &&that) noexcept {
         if (this != &that) {
             if (p) deleter(p);
-            deleter = std::move(that.deleter);
             p = std::exchange(that.p, nullptr);
         }
         return *this;
@@ -118,22 +116,22 @@ struct unique_ptr<T[], Deleter> : public unique_ptr<T, Deleter> {
     }
 };
 
-template<typename T, typename ...Args, std::enable_if<!std::is_unbounded_array_v<T>, int>::type = 0>
+template<typename T, typename ...Args, std::enable_if_t<!std::is_unbounded_array_v<T>, int> = 0>
 unique_ptr<T> make_unique(Args &&...args) {
     return unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
-template<typename T, std::enable_if<!std::is_unbounded_array_v<T>, int>::type = 0>
+template<typename T, std::enable_if_t<!std::is_unbounded_array_v<T>, int> = 0>
 unique_ptr<T> make_unique_for_overwrite() {
     return unique_ptr<T>(new T);
 }
 
-template<typename T, std::enable_if<std::is_unbounded_array_v<T>, int>::type = 0>
+template<typename T, std::enable_if_t<std::is_unbounded_array_v<T>, int> = 0>
 unique_ptr<T> make_unique(size_t len) {
     return unique_ptr<T>(new std::remove_extent_t<T>[len]);
 }
 
-template<typename T, std::enable_if<std::is_unbounded_array_v<T>, int>::type = 0>
+template<typename T, std::enable_if_t<std::is_unbounded_array_v<T>, int> = 0>
 unique_ptr<T> make_unique_for_overwrite(size_t len) {
     return unique_ptr<T>(new std::remove_extent_t<T>[len]);
 }
