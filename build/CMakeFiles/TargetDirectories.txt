@@ -1,3 +1,0 @@
-/Users/heyujie/heystl/build/CMakeFiles/unique_ptr.dir
-/Users/heyujie/heystl/build/CMakeFiles/edit_cache.dir
-/Users/heyujie/heystl/build/CMakeFiles/rebuild_cache.dir
